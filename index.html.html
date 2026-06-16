@@ -1,0 +1,666 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;color:#1B2A4A;background:#fff;font-size:15px}
+
+/* NAV */
+.nav{background:#1B2A4A;position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:54px;gap:12px}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{color:#8ca0c0;text-decoration:none;padding:0 11px;font-size:12px;line-height:54px;white-space:nowrap;border-bottom:3px solid transparent;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-links a.active{border-bottom-color:#8DC21A}
+
+/* HERO */
+.hero{background:#1B2A4A;color:#fff;padding:60px 40px 52px;position:relative;overflow:hidden;min-height:320px;display:flex;align-items:center}
+.hero-content{position:relative;z-index:2;max-width:560px}
+.sh{position:absolute;z-index:1}
+.sh1{right:0;top:0;width:0;height:0;border-style:solid;border-width:0 280px 460px 0;border-color:transparent #00B2C8 transparent transparent;opacity:.12}
+.sh2{right:100px;top:0;width:0;height:0;border-style:solid;border-width:0 180px 300px 0;border-color:transparent #8DC21A transparent transparent;opacity:.18}
+.sh3{right:40px;bottom:0;width:0;height:0;border-style:solid;border-width:0 140px 220px 0;border-color:transparent #00B2C8 transparent transparent;opacity:.08}
+.btn-g{background:#8DC21A;color:#1B2A4A;padding:11px 22px;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:7px;border:none;cursor:pointer;transition:opacity .2s}
+.btn-g:hover{opacity:.85}
+.btn-o{border:2px solid rgba(255,255,255,.3);color:#fff;padding:11px 22px;border-radius:8px;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:border-color .2s}
+.btn-o:hover{border-color:#fff}
+
+/* STATS */
+.stats{background:#8DC21A;padding:16px 40px;display:flex;justify-content:center;flex-wrap:wrap}
+.stat{text-align:center;padding:6px 32px;border-right:1px solid rgba(27,42,74,.2)}
+.stat:last-child{border:none}
+.stat-n{font-size:26px;font-weight:800;color:#1B2A4A}
+.stat-l{font-size:10px;color:#3a5800;text-transform:uppercase;letter-spacing:.5px;margin-top:1px}
+
+/* SECTIONS */
+.sec{padding:54px 40px;scroll-margin-top:54px}
+.sec-bg{background:#f4f6f8}
+.eyebrow{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#00B2C8;margin-bottom:7px;font-weight:600}
+.sec-title{font-size:26px;font-weight:800;color:#1B2A4A;margin-bottom:9px;line-height:1.2}
+.sec-sub{font-size:13px;color:#5a6a8a;max-width:560px;line-height:1.7;margin-bottom:32px}
+.sec-hd{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.sec-line{flex:1;height:1px;background:#dde3ee}
+.sec-badge{background:#1B2A4A;color:#fff;border-radius:4px;padding:4px 12px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.sec-badge.g{background:#8DC21A;color:#1B2A4A}
+.sec-badge.c{background:#00B2C8}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:940px;margin-bottom:32px}
+.founder{background:#fff;border-radius:12px;padding:20px;border:1px solid #dde3ee;display:flex;gap:14px}
+.f-av{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;flex-shrink:0;color:#fff}
+.f-inf h3{font-size:14px;font-weight:700;margin-bottom:2px}
+.f-inf .ftitle{font-size:9px;color:#00B2C8;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.f-inf p{font-size:12px;color:#5a6a8a;line-height:1.6}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;max-width:940px;margin-bottom:28px}
+.why-c{background:#fff;border-radius:10px;padding:16px;border:1px solid #dde3ee;border-left:4px solid #8DC21A}
+.why-ic{width:34px;height:34px;border-radius:8px;background:#eaf5d0;display:flex;align-items:center;justify-content:center;margin-bottom:9px}
+.why-c h4{font-size:13px;font-weight:700;margin-bottom:4px}
+.why-c p{font-size:12px;color:#5a6a8a;line-height:1.55}
+.cert-row{display:flex;gap:10px;flex-wrap:wrap}
+.cert{background:#1B2A4A;color:#fff;border-radius:8px;padding:9px 16px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600}
+
+/* DPC */
+.dpc-kpi{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:500px;margin-bottom:28px}
+.dpc-k{background:#fff;border-radius:10px;padding:18px;border:1px solid #dde3ee;text-align:center}
+.dpc-n{font-size:42px;font-weight:800;color:#00B2C8;line-height:1}
+.dpc-u{font-size:12px;font-weight:700;color:#1B2A4A;margin-bottom:5px}
+.dpc-d{font-size:12px;color:#5a6a8a;line-height:1.5}
+.dpc-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;max-width:900px}
+.dpc-step{background:#fff;border-radius:10px;padding:16px;border:1px solid #dde3ee}
+.dpc-step h4{font-size:13px;font-weight:700;color:#1B2A4A;margin-bottom:5px;display:flex;align-items:center;gap:7px}
+.dpc-step h4 i{color:#00B2C8}
+.dpc-step p{font-size:12px;color:#5a6a8a;line-height:1.55}
+.dpc-plus{font-size:20px;font-weight:800;color:#00B2C8;text-align:center}
+.dpc-ou{font-size:11px;font-weight:700;background:#1B2A4A;color:#fff;border-radius:20px;padding:4px 10px}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px;max-width:1000px}
+.t-card{background:#fff;border-radius:12px;padding:16px 12px;border:1px solid #dde3ee;text-align:center;transition:transform .15s}
+.t-card:hover{transform:translateY(-2px)}
+.t-av{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;margin:0 auto 10px}
+.t-name{font-size:13px;font-weight:700;margin-bottom:2px;line-height:1.3}
+.t-qual{font-size:9px;color:#00B2C8;font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-bottom:5px}
+.t-spec{font-size:11px;color:#5a6a8a;line-height:1.5}
+
+/* CATALOGUE */
+.s-wrap{position:relative;flex:1;min-width:200px}
+.s-wrap i{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#5a6a8a;font-size:13px;pointer-events:none}
+.s-wrap input{width:100%;padding:8px 14px 8px 34px;border:1px solid #dde3ee;border-radius:8px;font-size:13px;outline:none;background:#f4f6f8}
+.s-wrap input:focus{border-color:#00B2C8;background:#fff}
+.cat-btn{padding:5px 14px;border-radius:20px;border:1px solid #dde3ee;background:#fff;color:#5a6a8a;font-size:12px;cursor:pointer;font-weight:500;transition:all .2s}
+.cat-btn:hover{border-color:#1B2A4A;color:#1B2A4A}
+.cat-btn.ac{color:#fff!important;border-color:transparent!important}
+.cat-btn.ac[data-c="tous"]{background:#1B2A4A}
+.cat-btn.ac[data-c="DPC"]{background:#00B2C8}
+.cat-btn.ac[data-c="Essentielles"]{background:#8DC21A}
+.cat-btn.ac[data-c="Métier"]{background:#F0A020}
+.cat-btn.ac[data-c="Signature"]{background:#C04090}
+.fmt-btn{padding:4px 12px;border-radius:20px;border:1px solid #dde3ee;background:#fff;color:#5a6a8a;font-size:11px;cursor:pointer;transition:all .2s}
+.fmt-btn.af{background:#f4f6f8;border-color:#1B2A4A;color:#1B2A4A;font-weight:600}
+
+/* CARDS */
+.f-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:12px}
+.f-card{background:#fff;border-radius:12px;border:1px solid #dde3ee;overflow:hidden;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .2s;display:flex;flex-direction:column}
+.f-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.07)}
+.f-card.sel{border:2px solid #00B2C8}
+.f-bar{height:4px}
+.f-bar.dpc{background:#00B2C8}.f-bar.essentielles{background:#8DC21A}.f-bar.metier{background:#F0A020}.f-bar.signature{background:#C04090}
+.f-top{padding:12px 14px 0;display:flex;align-items:center;gap:8px}
+.f-ic{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+.f-ic.dpc{background:#d0f0f5;color:#006e80}.f-ic.essentielles{background:#eaf5d0;color:#3a7500}.f-ic.metier{background:#fff5e0;color:#8a5000}.f-ic.signature{background:#fce8f4;color:#80205a}
+.f-cl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+.f-cl.dpc{color:#006e80}.f-cl.essentielles{color:#3a7500}.f-cl.metier{color:#8a5000}.f-cl.signature{color:#80205a}
+.f-body{padding:10px 14px;flex:1}
+.f-title{font-size:12px;font-weight:700;color:#1B2A4A;line-height:1.4;margin-bottom:5px}
+.f-by{font-size:10px;color:#5a6a8a;font-style:italic;margin-bottom:5px}
+.f-tags{display:flex;flex-wrap:wrap;gap:3px}
+.f-tag{font-size:9px;padding:2px 6px;border-radius:4px;background:#f4f6f8;color:#5a6a8a}
+.f-foot{padding:8px 14px;border-top:1px solid #dde3ee;background:#fafbfc;display:flex;justify-content:space-between;align-items:flex-start}
+.f-price{font-size:12px;font-weight:700;color:#1B2A4A}
+.f-org{font-size:9px;color:#5a6a8a;margin-top:1px}
+.f-more{font-size:10px;color:#00B2C8;font-weight:600;white-space:nowrap;margin-top:2px}
+.enc-badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:600;color:#7a4f00;background:#fff3cd;border:1px solid #f0d080;border-radius:4px;padding:2px 7px;margin-top:5px}
+.empty-state{text-align:center;padding:48px;color:#5a6a8a;font-size:14px;grid-column:1/-1}
+
+/* DETAIL PANEL */
+.f-detail{grid-column:1/-1;background:#fff;border:2px solid #00B2C8;border-radius:12px;overflow:hidden;animation:slideDown .25s ease}
+@keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.fd-head{padding:20px 24px 14px;color:#fff;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.fd-head.dpc{background:#00B2C8}.fd-head.essentielles{background:#3a7500}.fd-head.metier{background:#1B2A4A}.fd-head.signature{background:#80205a}
+.fd-cat{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:.8;margin-bottom:5px}
+.fd-title{font-size:15px;font-weight:700;line-height:1.3;margin-bottom:3px}
+.fd-by{font-size:12px;opacity:.8;font-style:italic}
+.fd-close{background:rgba(255,255,255,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fd-body{padding:18px 24px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.fd-kpis{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.fd-kpi{background:#f4f6f8;border-radius:7px;padding:7px 11px;text-align:center;min-width:80px;flex:1}
+.fd-kl{font-size:8px;text-transform:uppercase;letter-spacing:.4px;color:#5a6a8a;margin-bottom:2px}
+.fd-kv{font-size:11px;font-weight:700;color:#1B2A4A}
+.fds{margin-bottom:13px}
+.fds h4{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#5a6a8a;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #dde3ee}
+.fds p,.fds li{font-size:12px;color:#2a3a5a;line-height:1.65}
+.fds ul{padding-left:15px}
+.fds li{margin-bottom:3px}
+.d-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.d-item{background:#f4f6f8;border-left:3px solid #8DC21A;border-radius:5px;padding:6px 9px;font-size:11px;line-height:1.4}
+.d-n{font-size:9px;font-weight:700;color:#5a6a8a;text-transform:uppercase;margin-bottom:1px}
+.enc-notice{background:#fff8e0;border:1px solid #f0d080;border-radius:7px;padding:8px 12px;font-size:11px;color:#7a4f00;margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.fd-foot{padding:12px 24px;border-top:1px solid #dde3ee;background:#f4f6f8;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.fd-pr{font-size:15px;font-weight:700;color:#1B2A4A}
+.fd-pr small{font-size:10px;font-weight:400;color:#5a6a8a}
+.btn-devis{background:#1B2A4A;color:#fff;border-radius:7px;padding:9px 18px;font-size:12px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background .2s}
+.btn-devis:hover{background:#243560}
+
+/* CONTACT */
+.c-card{background:rgba(255,255,255,.08);border-radius:10px;padding:18px;border:1px solid rgba(255,255,255,.12)}
+.c-nm{font-size:14px;font-weight:700;margin-bottom:2px;color:#fff}
+.c-rl{font-size:9px;color:#00B2C8;text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:10px}
+.c-row{font-size:12px;margin-bottom:5px;display:flex;align-items:center;gap:7px;color:#8ca0c0}
+.c-row i{color:#8DC21A;font-size:12px;width:13px}
+.c-row a{color:#8DC21A;text-decoration:none}
+.c-row a:hover{text-decoration:underline}
+
+@media(max-width:660px){
+  .about-grid,.dpc-flow,.fd-body{grid-template-columns:1fr!important}
+  .hero{padding:40px 20px}
+  .sec{padding:40px 20px}
+  .stats{padding:12px 20px}
+}
+</style>
+
+<!-- NAV -->
+<nav class="nav">
+  <div style="background:rgba(255,255,255,0.95);border-radius:8px;padding:4px 10px;flex-shrink:0">
+    <img src="https://nextstep-academy.fr/static/assets/companies-logo/nextstep-inline.svg" alt="Next Step Academy" style="height:30px;width:auto;display:block">
+  </div>
+  <div class="nav-links">
+    <a href="#accueil" class="active" onclick="navClick(this)">Accueil</a>
+    <a href="#apropos" onclick="navClick(this)">À propos</a>
+    <a href="#dpc" onclick="navClick(this)">Le DPC</a>
+    <a href="#offre" onclick="navClick(this)">Notre offre</a>
+    <a href="#equipe" onclick="navClick(this)">Notre équipe</a>
+    <a href="#catalogue" onclick="navClick(this)">Formations</a>
+    <a href="#contact" onclick="navClick(this)">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="accueil" style="scroll-margin-top:54px">
+  <div class="hero">
+    <div class="sh sh1"></div><div class="sh sh2"></div><div class="sh sh3"></div>
+    <div class="hero-content">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:22px">
+        <div style="background:rgba(255,255,255,0.95);border-radius:8px;padding:5px 12px;display:inline-block">
+          <img src="https://nextstep-academy.fr/static/assets/companies-logo/nextstep-inline.svg" alt="Next Step Academy" style="height:38px;width:auto;display:block">
+        </div>
+        <div style="font-size:9px;color:rgba(255,255,255,.3);border-left:1px solid rgba(255,255,255,.15);padding-left:14px;line-height:1.6">Certifié Qualiopi<br>Agréé ODPC</div>
+      </div>
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#00B2C8;margin-bottom:14px;font-weight:600">Catalogue formations en optique 2026</div>
+      <h1 style="font-size:36px;font-weight:800;line-height:1.12;margin-bottom:14px;color:#fff">Donnez une nouvelle<br>dimension à vos<br><span style="color:#8DC21A">compétences</span> <span style="color:#00B2C8">d'opticien</span></h1>
+      <p style="font-size:13px;color:#8ca0c0;line-height:1.7;margin-bottom:28px;max-width:420px">Des formations concrètes, utiles et directement applicables dans votre pratique quotidienne. Petit groupe · Formateurs experts · Financements éligibles.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn-g" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">Voir les formations</button>
+        <a href="https://nextstep-academy.fr/contact/" target="_blank" class="btn-o">Demander un devis</a>
+      </div>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-n">22</div><div class="stat-l">Formations</div></div>
+    <div class="stat"><div class="stat-n">11</div><div class="stat-l">Formateurs experts</div></div>
+    <div class="stat"><div class="stat-n">6–10</div><div class="stat-l">Participants / session</div></div>
+    <div class="stat"><div class="stat-n">4</div><div class="stat-l">Formats disponibles</div></div>
+  </div>
+</div>
+
+<!-- À PROPOS -->
+<section id="apropos" class="sec">
+  <div class="eyebrow">Notre histoire</div>
+  <h2 class="sec-title">Former, Accompagner,<br>Faire progresser les professionnels de l'optique</h2>
+  <p class="sec-sub">Next Step Academy est née de la rencontre de deux experts complémentaires réunis par une même ambition : proposer des formations concrètes, utiles et directement applicables.</p>
+  <div class="about-grid">
+    <div class="founder">
+      <img src="https://s3.eu-west-par.io.cloud.ovh.net/nextstep-academy-s3/media/team/Stephane.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=b5c2d8a5f3734690a17093d80df0989b%2F20260529%2Feu-west-par%2Fs3%2Faws4_request&X-Amz-Date=20260529T150637Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=a9ca64525b9b7064e6d4b27d8e1c7ace8d3fa40207ed2d64d97fc0deee9716fc" alt="Stéphane Garnier" style="width:64px;height:64px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid #dde3ee">
+      <div class="f-inf"><h3>Stéphane Garnier</h3><div class="ftitle">Fondateur — Docteur en ingénierie médicale</div><p>Audioprothésiste diplômé d'État, plus de 25 ans d'expérience en audiologie. Approche pédagogique exigeante, forte orientation terrain.</p></div>
+    </div>
+    <div class="founder">
+      <img src="https://s3.eu-west-par.io.cloud.ovh.net/nextstep-academy-s3/media/team/WhatsApp_Image_2026-04-23_at_15.38.17.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=b5c2d8a5f3734690a17093d80df0989b%2F20260529%2Feu-west-par%2Fs3%2Faws4_request&X-Amz-Date=20260529T150713Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=81072d7d8c72583765ebd9c4b5ef1fe038064932a8daad6a99ad917a8bfe6264" alt="Isabelle Rivière" style="width:64px;height:64px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid #dde3ee">
+      <div class="f-inf"><h3>Isabelle Rivière</h3><div class="ftitle">Directrice division Optique</div><p>Opticienne diplômée, plus de 20 ans d'expérience. Titulaire d'un CESU EPP et d'un DIU en Télémédecine. Auteure d'ouvrages scolaires.</p></div>
+    </div>
+  </div>
+  <div class="sec-hd"><div class="sec-badge g">Pourquoi nous choisir</div><div class="sec-line"></div></div>
+  <div class="why-grid">
+    <div class="why-c"><div class="why-ic"><i class="fa fa-certificate" style="color:#3a7500"></i></div><h4>Certifié Qualiopi &amp; agréé ODPC</h4><p>Garant du sérieux de nos programmes et de la valeur ajoutée apportée à chaque professionnel accompagné.</p></div>
+    <div class="why-c"><div class="why-ic"><i class="fa fa-users" style="color:#3a7500"></i></div><h4>Formateurs experts</h4><p>Tous professionnels de l'optique, méthodes éprouvées directement applicables.</p></div>
+    <div class="why-c"><div class="why-ic"><i class="fa fa-sliders" style="color:#3a7500"></i></div><h4>Formats flexibles</h4><p>Présentiel, classe virtuelle, e-learning ou parcours mixtes.</p></div>
+    <div class="why-c"><div class="why-ic"><i class="fa fa-user-gear" style="color:#3a7500"></i></div><h4>Sur-mesure</h4><p>Parcours personnalisés. Petit groupe de 6 à 10 participants.</p></div>
+  </div>
+  <div class="cert-row">
+    <div style="background:#fff;border-radius:10px;padding:12px 20px;display:flex;align-items:center;gap:12px;border:1px solid #dde3ee">
+      <img src="https://cdn.filestackcontent.com/JjlDOfaHQC6ggIeMYHgw" alt="Qualiopi" style="height:56px;width:auto">
+      <div><div style="font-size:13px;font-weight:700;color:#1B2A4A">Certifié Qualiopi</div><div style="font-size:11px;color:#5a6a8a">Actions de formation</div></div>
+    </div>
+    <div style="background:#fff;border-radius:10px;padding:12px 20px;display:flex;align-items:center;gap:12px;border:1px solid #dde3ee">
+      <img src="https://cdn.filestackcontent.com/XgA9QBJSBCLC0qNkGNSN" alt="ODPC" style="height:56px;width:auto">
+      <div><div style="font-size:13px;font-weight:700;color:#1B2A4A">Agréé ODPC</div><div style="font-size:11px;color:#5a6a8a">N° 99A8</div></div>
+    </div>
+    <div class="cert"><i class="fa fa-check-circle" style="color:#8DC21A"></i> Accessible aux personnes en situation de handicap</div>
+  </div>
+</section>
+
+<!-- DPC -->
+<section id="dpc" class="sec sec-bg">
+  <div class="eyebrow">Zoom sur le DPC</div>
+  <h2 class="sec-title">Le Développement Professionnel Continu</h2>
+  <p class="sec-sub">Un dispositif de formation obligatoire pour tous les professionnels de santé. Le DPC vise à maintenir et actualiser les compétences tout au long de la carrière.</p>
+  <div class="dpc-kpi">
+    <div class="dpc-k"><div class="dpc-n">3</div><div class="dpc-u">ANS</div><div class="dpc-d">Cycle triennal renouvelé à chaque période</div></div>
+    <div class="dpc-k"><div class="dpc-n">2</div><div class="dpc-u">ACTIONS</div><div class="dpc-d">Formation cognitive + Évaluation des Pratiques Professionnelles</div></div>
+  </div>
+  <div class="sec-hd"><div class="sec-badge c">Comment valider son DPC ?</div><div class="sec-line"></div></div>
+  <div class="dpc-flow">
+    <div class="dpc-step"><h4><i class="fa fa-brain"></i> Formation cognitive</h4><p>Formation en présentiel ou distanciel pour acquérir ou actualiser vos connaissances.</p></div>
+    <div class="dpc-plus">+</div>
+    <div class="dpc-step"><h4><i class="fa fa-clipboard-check"></i> Évaluation des Pratiques (EPP)</h4><p>Analyse de vos pratiques pour identifier des axes d'amélioration.</p></div>
+    <div class="dpc-ou" style="text-align:center">OU</div>
+    <div class="dpc-step"><h4><i class="fa fa-layer-group"></i> Formation intégrée</h4><p>Une seule formation qui valide simultanément les deux actions.</p></div>
+  </div>
+  <div style="margin-top:14px;background:#00B2C8;border-radius:10px;padding:18px 24px;max-width:900px;color:#fff;font-size:13px;display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+    <div style="background:rgba(255,255,255,0.95);border-radius:8px;padding:8px 14px;display:flex;align-items:center;gap:16px;flex-shrink:0">
+      <img src="https://cdn.filestackcontent.com/JjlDOfaHQC6ggIeMYHgw" alt="Qualiopi" style="height:56px;width:auto">
+      <img src="https://cdn.filestackcontent.com/XgA9QBJSBCLC0qNkGNSN" alt="ODPC" style="height:56px;width:auto">
+    </div>
+    <span><strong>Next Step Academy</strong> propose des formations DPC validées ou en cours de validation par l'ANDPC.</span>
+  </div>
+</section>
+
+<!-- OFFRE -->
+<section id="offre" style="padding:54px 40px;scroll-margin-top:54px;background:#1B2A4A">
+  <div style="text-align:center;margin-bottom:36px">
+    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#8DC21A;margin-bottom:7px;font-weight:600">Notre offre</div>
+    <h2 style="color:#fff;font-size:28px;font-weight:800;margin-bottom:10px">Une offre de formation structurée</h2>
+    <p style="color:#8ca0c0;font-size:13px;max-width:540px;margin:0 auto;line-height:1.7">4 gammes de formations complémentaires pour accompagner les opticiens à chaque étape de leur développement professionnel.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:900px;margin:0 auto">
+
+    <div style="background:#00B2C8;border-radius:16px;padding:32px 28px;display:flex;flex-direction:column;position:relative;overflow:hidden">
+      <div style="position:absolute;top:-8px;right:20px;font-size:90px;font-weight:900;opacity:.13;color:#fff;line-height:1;font-style:italic;pointer-events:none">01</div>
+      <h3 style="font-size:19px;font-weight:800;color:#fff;margin-bottom:10px">Formations DPC</h3>
+      <p style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.7;flex:1;margin-bottom:24px">Pour répondre à vos obligations de Développement Professionnel Continu. Elles associent formation cognitive et Évaluation des Pratiques Professionnelles (EPP). Financement pris en charge.</p>
+      <button onclick="goToCat('DPC')" style="background:#fff;color:#00B2C8;border:none;cursor:pointer;padding:10px 20px;border-radius:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;display:inline-flex;align-items:center;gap:8px;width:fit-content;transition:opacity .2s">Découvrir les formations DPC →</button>
+    </div>
+
+    <div style="background:#8DC21A;border-radius:16px;padding:32px 28px;display:flex;flex-direction:column;position:relative;overflow:hidden">
+      <div style="position:absolute;top:-8px;right:20px;font-size:90px;font-weight:900;opacity:.13;color:#1B2A4A;line-height:1;font-style:italic;pointer-events:none">02</div>
+      <h3 style="font-size:19px;font-weight:800;color:#1B2A4A;margin-bottom:10px">Formations "Essentielles"</h3>
+      <p style="font-size:13px;color:rgba(27,42,74,.78);line-height:1.7;flex:1;margin-bottom:24px">Les fondamentaux du métier : technique, commercial, management, communication digitale. Des formations concrètes, applicables immédiatement en magasin.</p>
+      <button onclick="goToCat('Essentielles')" style="background:#1B2A4A;color:#fff;border:none;cursor:pointer;padding:10px 20px;border-radius:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;display:inline-flex;align-items:center;gap:8px;width:fit-content;transition:opacity .2s">Découvrir les Essentielles →</button>
+    </div>
+
+    <div style="background:#F0A020;border-radius:16px;padding:32px 28px;display:flex;flex-direction:column;position:relative;overflow:hidden">
+      <div style="position:absolute;top:-8px;right:20px;font-size:90px;font-weight:900;opacity:.13;color:#1B2A4A;line-height:1;font-style:italic;pointer-events:none">03</div>
+      <h3 style="font-size:19px;font-weight:800;color:#1B2A4A;margin-bottom:10px">Parcours "Métier"</h3>
+      <p style="font-size:13px;color:rgba(27,42,74,.78);line-height:1.7;flex:1;margin-bottom:24px">Plusieurs jours de formation pour une montée en compétences approfondie et durable : Contactologie (7j), Réfraction (6j) et Basse vision (5j). En présentiel, petit groupe.</p>
+      <button onclick="goToCat('Métier')" style="background:#1B2A4A;color:#fff;border:none;cursor:pointer;padding:10px 20px;border-radius:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;display:inline-flex;align-items:center;gap:8px;width:fit-content;transition:opacity .2s">Découvrir les parcours Métier →</button>
+    </div>
+
+    <div style="background:#243560;border-radius:16px;padding:32px 28px;display:flex;flex-direction:column;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12)">
+      <div style="position:absolute;top:-8px;right:20px;font-size:90px;font-weight:900;opacity:.13;color:#fff;line-height:1;font-style:italic;pointer-events:none">04</div>
+      <h3 style="font-size:19px;font-weight:800;color:#fff;margin-bottom:10px">Formations "Signature"</h3>
+      <p style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.7;flex:1;margin-bottom:24px">Animées par nos experts reconnus, pour les professionnels qui veulent aller plus loin dans leur pratique et développer une expertise pointue dans leur spécialité.</p>
+      <button onclick="goToCat('Signature')" style="background:#8DC21A;color:#1B2A4A;border:none;cursor:pointer;padding:10px 20px;border-radius:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;display:inline-flex;align-items:center;gap:8px;width:fit-content;transition:opacity .2s">Découvrir les Signature →</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ÉQUIPE -->
+<section id="equipe" class="sec">
+  <div class="eyebrow">Notre équipe</div>
+  <h2 class="sec-title">Des formateurs experts à votre service</h2>
+  <p class="sec-sub">Tous professionnels de l'optique reconnus, nos formateurs partagent des méthodes éprouvées directement applicables dans votre pratique.</p>
+  <div class="team-grid" id="team-grid"></div>
+</section>
+
+<!-- CATALOGUE -->
+<section id="catalogue" class="sec sec-bg">
+  <div class="eyebrow">Nos formations</div>
+  <h2 class="sec-title">Catalogue 2026</h2>
+  <div style="background:#fff8e0;border:1px solid #f0d080;border-radius:8px;padding:10px 16px;font-size:12px;color:#7a4f00;margin-bottom:20px;display:flex;align-items:center;gap:8px;max-width:700px">
+    <i class="fa fa-circle-info"></i>
+    <span>* Les formations DPC marquées <strong>« En cours de validation ANDPC »</strong> sont en attente de confirmation officielle.</span>
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:14px">
+    <div class="s-wrap"><i class="fa fa-search"></i><input type="text" id="search" placeholder="Rechercher une formation…" oninput="render()"></div>
+  </div>
+  <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px" id="cat-row"></div>
+  <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:20px" id="fmt-row"></div>
+  <div class="f-grid" id="f-grid"></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:#1B2A4A;color:#fff;padding:48px 40px;scroll-margin-top:54px">
+  <div style="text-align:center;margin-bottom:6px">
+    <div style="background:rgba(255,255,255,0.95);border-radius:8px;padding:5px 12px;display:inline-block;margin-bottom:16px">
+      <img src="https://nextstep-academy.fr/static/assets/companies-logo/nextstep-inline.svg" alt="Next Step Academy" style="height:34px;width:auto;display:block">
+    </div>
+    <h2 style="font-size:24px;font-weight:800;margin-bottom:7px">Demandez un devis personnalisé</h2>
+    <p style="font-size:13px;color:#8ca0c0;max-width:480px;margin:0 auto">Nos équipes vous accompagnent pour construire un parcours adapté à votre profil et vos objectifs.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;max-width:900px;margin:24px auto 0">
+    <div class="c-card">
+      <div class="c-nm">Charlène Troisieme</div><div class="c-rl">Responsable commerciale</div>
+      <div class="c-row"><i class="fa fa-phone"></i><a href="tel:0772100331">07 72 10 03 31</a></div>
+      <div class="c-row"><i class="fa fa-envelope"></i><a href="mailto:optique@nextstep-academy.fr">optique@nextstep-academy.fr</a></div>
+    </div>
+    <div class="c-card">
+      <div class="c-nm">Isabelle Rivière</div><div class="c-rl">Directrice division Optique</div>
+      <div class="c-row"><i class="fa fa-phone"></i><a href="tel:0675481458">06 75 48 14 58</a></div>
+      <div class="c-row"><i class="fa fa-envelope"></i><a href="mailto:isabelle.riviere@nextstep-academy.fr">isabelle.riviere@nextstep-academy.fr</a></div>
+    </div>
+    <div class="c-card">
+      <div class="c-nm">Référent handicap</div><div class="c-rl">Accessibilité & inclusion</div>
+      <div class="c-row"><i class="fa fa-phone"></i><a href="tel:0681158624">06 81 15 86 24</a></div>
+      <div class="c-row"><i class="fa fa-envelope"></i><a href="mailto:contact.nextstepacademy@gmail.com">contact.nextstepacademy@gmail.com</a></div>
+      <div class="c-row" style="margin-top:6px"><i class="fa fa-globe"></i><a href="https://www.nextstep-academy.fr" target="_blank">www.nextstep-academy.fr</a></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:24px">
+    <a href="https://nextstep-academy.fr/contact/" target="_blank" style="background:#8DC21A;color:#1B2A4A;padding:13px 30px;border-radius:8px;font-weight:800;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:9px">
+      Accéder au formulaire de contact →
+    </a>
+  </div>
+</section>
+
+<div style="background:#0f1a2e;color:#3a4a6a;text-align:center;padding:16px;font-size:11px">
+  © 2026 Next Step Academy · <a href="https://www.nextstep-academy.fr" target="_blank" style="color:#5a8ab0;text-decoration:none">www.nextstep-academy.fr</a> · Certifié Qualiopi · Agréé ODPC N°99A8
+</div>
+
+<script>
+const TEAM=[
+  {init:"IR",bg:"#00B2C8",nom:"Isabelle Rivière",qual:"Opticienne diplômée",spec:"Directrice division Optique · Spécialiste formation professionnelle",
+   photo:"https://s3.eu-west-par.io.cloud.ovh.net/nextstep-academy-s3/media/team/WhatsApp_Image_2026-04-23_at_15.38.17.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=b5c2d8a5f3734690a17093d80df0989b%2F20260529%2Feu-west-par%2Fs3%2Faws4_request&X-Amz-Date=20260529T145758Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=6e2b595495c2c1c5aa5c1fa31a38554bd4b2a8f40671c47f27f3690f72754dce"},
+  {init:"CT",bg:"#8DC21A",nom:"Charlène Troisieme",qual:"Marketing digital",spec:"Responsable commerciale · Formatrice marketing et communication digitale",
+   photo:"https://s3.eu-west-par.io.cloud.ovh.net/nextstep-academy-s3/media/team/Portrait_Charl%C3%A8ne_TROISIEME.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=b5c2d8a5f3734690a17093d80df0989b%2F20260529%2Feu-west-par%2Fs3%2Faws4_request&X-Amz-Date=20260529T150033Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f96b2c1d89fedd53d6816e07ade98e7ff53d9dfc9f151c0a57bad484affe28d5"},
+  {init:"AA",bg:"#1B2A4A",nom:"Alain Abecassis",qual:"Opticien-optométriste",spec:"Formateur expert en vision et posturologie",
+   photo:"https://s3.eu-west-par.io.cloud.ovh.net/nextstep-academy-s3/media/team/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=b5c2d8a5f3734690a17093d80df0989b%2F20260529%2Feu-west-par%2Fs3%2Faws4_request&X-Amz-Date=20260529T150033Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=af559d958249599230086ae74a8cbd76978d96166aecc8339cac421e6ee53a7a"},
+  {init:"MB",bg:"#00B2C8",nom:"Marina Barthe",qual:"Optométriste clinicienne",spec:"Formatrice experte en contactologie et contrôle de la myopie",
+   photo:"https://s3.eu-west-par.io.cloud.ovh.net/nextstep-academy-s3/media/team/image_1.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=b5c2d8a5f3734690a17093d80df0989b%2F20260529%2Feu-west-par%2Fs3%2Faws4_request&X-Amz-Date=20260529T150033Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=d314b5b0ff36df05cde019efc72ada478f894fc6a7b6279df3713e8571d5b5c0"},
+  {init:"ML",bg:"#C04090",nom:"Marie-Laure Laborie",qual:"Orthoptiste",spec:"Formatrice experte en neurovision et troubles neurovisuels",
+   photo:"https://s3.eu-west-par.io.cloud.ovh.net/nextstep-academy-s3/media/team/image_5.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=b5c2d8a5f3734690a17093d80df0989b%2F20260529%2Feu-west-par%2Fs3%2Faws4_request&X-Amz-Date=20260529T150033Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f50011fdeaf593f57ea2d3f23fab3cc9a410a816f07c73b983ec7d406294bccf"},
+  {init:"VL",bg:"#F0A020",nom:"Valérie Laumonier",qual:"Opticienne-optométriste",spec:"Formatrice spécialisée en sciences de la vision",
+   photo:"https://s3.eu-west-par.io.cloud.ovh.net/nextstep-academy-s3/media/team/WhatsApp_Image_2026-04-11_at_16.47.31.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=b5c2d8a5f3734690a17093d80df0989b%2F20260529%2Feu-west-par%2Fs3%2Faws4_request&X-Amz-Date=20260529T150033Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=033cd72844c4019580668c26f3d21d230c5fec9d5054a0de08f83d977d6ac8af"},
+  {init:"AM",bg:"#8DC21A",nom:"Annie-Pierre Mansuy",qual:"Opticienne",spec:"Formatrice experte en formation commerciale et santé visuelle",
+   photo:"https://s3.eu-west-par.io.cloud.ovh.net/nextstep-academy-s3/media/team/IMG_8260.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=b5c2d8a5f3734690a17093d80df0989b%2F20260529%2Feu-west-par%2Fs3%2Faws4_request&X-Amz-Date=20260529T150033Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=99184ae80bf8513cecbc8a19e39543cc30206e3cc17781284809b910d8997117"},
+  {init:"VP",bg:"#1B2A4A",nom:"Vincent Poulet",qual:"Opticien",spec:"Expert en vision au travail et analyse posturale",
+   photo:"https://s3.eu-west-par.io.cloud.ovh.net/nextstep-academy-s3/media/team/image_2.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=b5c2d8a5f3734690a17093d80df0989b%2F20260529%2Feu-west-par%2Fs3%2Faws4_request&X-Amz-Date=20260529T150033Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=2bf2943cf6a1f836250018f50f0d79b00f60261319a648fe7d1bc823e84cef3c"},
+  {init:"FO",bg:"#00B2C8",nom:"Françoise Olivier",qual:"Opticienne-optométriste",spec:"Formatrice experte en métiers de l'optique et santé visuelle",
+   photo:"https://s3.eu-west-par.io.cloud.ovh.net/nextstep-academy-s3/media/team/image_6.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=b5c2d8a5f3734690a17093d80df0989b%2F20260529%2Feu-west-par%2Fs3%2Faws4_request&X-Amz-Date=20260529T150033Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c3877822527dfc2a38bdca3e345d78a4b70394cb5b3f347407b0e6c21151a9b5"},
+  {init:"JP",bg:"#C04090",nom:"Jean-Christophe Pignol",qual:"Opticien-optométriste",spec:"Expert en réfraction, vision de l'enfant et basse vision",
+   photo:"https://s3.eu-west-par.io.cloud.ovh.net/nextstep-academy-s3/media/team/image_7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=b5c2d8a5f3734690a17093d80df0989b%2F20260529%2Feu-west-par%2Fs3%2Faws4_request&X-Amz-Date=20260529T150033Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=57d6bb28f11bde19eeb4c41dcfc36f661f7cf5534b77d2db31f6c7f173614321"},
+  {init:"FV",bg:"#F0A020",nom:"Fabienne Vulliez-Ladava",qual:"Opticienne-optométriste",spec:"Formatrice experte en basse vision et accompagnement des patients malvoyants",
+   photo:"https://s3.eu-west-par.io.cloud.ovh.net/nextstep-academy-s3/media/team/image_3.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=b5c2d8a5f3734690a17093d80df0989b%2F20260529%2Feu-west-par%2Fs3%2Faws4_request&X-Amz-Date=20260529T150033Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=b93ad8ff31d29aa8ca6e6c92e238ee5f2881bdf57f00aa2f98443eddf376c8f4"}
+];
+
+const catCls={DPC:"dpc",Essentielles:"essentielles",Métier:"metier",Signature:"signature"};
+const catLb={DPC:"Formation DPC",Essentielles:'Formation "Essentielle"',Métier:'Parcours "Métier"',Signature:'Formation "Signature"'};
+const catIc={DPC:"fa fa-eye",Essentielles:"fa fa-wrench",Métier:"fa fa-route",Signature:"fa fa-star"};
+let aCat="tous",aFmt="Tous formats";
+
+const DATA=[
+  {id:1,cat:"DPC",titre:"Accompagner l'enfant et sa famille dans la prise en charge de l'amblyopie, du strabisme et du micro strabisme",sous:"Troubles visuels chez l'enfant",fmt:"Classe virtuelle",dur:"5h",prix:"350€ HT/part*",type:"Formation cognitive",action:"DPC N°99A82626010",enc:true,
+   desc:"Formation en classe virtuelle synchrone avec des outils interactifs, destinée aux opticiens lunetiers diplômés.",
+   obj:["Accueillir un enfant et ses parents face à une amblyopie, un strabisme ou un microstrabisme","Réaliser les tests et mesures adaptés","Sélectionner et adapter l'équipement optique approprié","Accompagner l'observance du traitement et coordonner sa pratique"],
+   prog:["Généralités sur le développement du système visuel de l'enfant","Accueil et prise en charge de l'enfant et des parents","Prise en charge visuelle & techniques d'investigation","Équipements & méthodes d'adaptation","Délivrance, suivi & comptes-rendus","Études de cas cliniques"],
+   pub:"Opticien-lunetier. Prérequis : BTS Opticien-lunetier."},
+  {id:2,cat:"DPC",titre:"Prise en charge de la myopie évolutive chez l'enfant",sous:"Troubles visuels chez l'enfant",fmt:"Présentiel ou classe virtuelle",dur:"7h",prix:"490€ HT/part*",type:"Formation cognitive",action:"DPC N°99A82626004/005",
+   desc:"Développer une prise en charge complète de la myopie évolutive chez l'enfant, de l'anamnèse au choix et au suivi des dispositifs de freination.",
+   obj:["Assurer la prise en charge complète d'un enfant présentant une myopie évolutive","Identifier les facteurs de risque génétiques et environnementaux","Connaître et maîtriser les dispositifs médicaux de freination","Conduire un entretien d'accompagnement structuré avec l'enfant et ses parents"],
+   prog:["Développement visuel de l'enfant et myopie évolutive","Dispositifs médicaux de freination : panorama et indications","Techniques d'investigation spécifiques à l'enfant","Communication, accueil et prise en charge de la famille","Compte-rendu d'adaptation et coordination inter-professionnelle"],
+   pub:"Opticien-lunetier. Prérequis : BTS Opticien-lunetier."},
+  {id:3,cat:"DPC",titre:"TCS : Traitement des troubles visuels chez l'enfant",sous:"Troubles visuels chez l'enfant",fmt:"Distanciel",dur:"5h",prix:"350€ HT/part*",type:"Évaluation des Pratiques (EPP)",action:"DPC N°99A82626011",enc:true,
+   desc:"EPP via la méthode du Test de Concordance de Script (TCS), reconnue par la HAS et l'ANDPC.",
+   obj:["Analyser et améliorer son raisonnement clinique en situation d'incertitude","Détecter une progression myopique rapide","Identifier une insuffisance de convergence avec diplopie intermittente","Assurer le suivi d'une amblyopie strabique traitée"],
+   prog:["1er temps : Passation des TCS — 10 situations cliniques","2ème temps : Restitution individuelle","3ème temps : Classe virtuelle et restitution collective"],
+   pub:"Opticien-lunetier. Prérequis : BTS Opticien-lunetier."},
+  {id:4,cat:"DPC",titre:"Prise en charge de la déficience visuelle par l'opticien",sous:"Basse vision",fmt:"Présentiel",dur:"8h",prix:"560€ HT/part*",type:"Formation cognitive",action:"DPC N°99A82626003",
+   desc:"En France, plus de 3 millions de personnes vivent avec une déficience visuelle. L'opticien spécialisé joue un rôle clé pour préserver l'autonomie et la qualité de vie des patients.",
+   obj:["Mettre à jour ses connaissances sur les pathologies oculaires les plus fréquentes","Reconnaître les signes fonctionnels nécessitant de référer en urgence","Adapter sa posture professionnelle face à un patient atteint de déficience visuelle","Choisir avec pertinence les aides techniques d'adaptation visuelle"],
+   prog:["Épidémiologie et pathologies oculaires","Anamnèse adaptée et bilan visuel","Aides techniques d'adaptation visuelle","Orientation et parcours pluridisciplinaire","Cas pratiques"],
+   pub:"Opticien-lunetier. Prérequis : BTS Opticien-lunetier."},
+  {id:5,cat:"DPC",titre:"Prise en charge de la santé et de la sécurité visuelle en entreprise",sous:"Capacités visuelles au travail",fmt:"Présentiel",dur:"7h",prix:"490€ HT/part*",type:"Formation cognitive",action:"DPC N°99A82626002",
+   desc:"La transformation numérique renforce les contraintes visuelles des salariés. Cette formation intègre les enjeux de santé visuelle, d'ergonomie et de prévention en milieu professionnel.",
+   obj:["Structurer et conduire une démarche d'audit visuel","Analyser les caractéristiques ergonomiques et posturales d'un poste","Choisir et justifier une solution optique adaptée","Expliquer le cadre réglementaire des EPI optiques"],
+   prog:["Contexte relationnel en entreprise","Analyse du poste et contraintes de travail","Recueil des plaintes et histoire de cas","Compensation amétropique et vision binoculaire au travail","EPI optiques : normes, produits et préconisation sectorielle"],
+   pub:"Opticien-lunetier. Prérequis : BTS Opticien-lunetier."},
+  {id:6,cat:"DPC",titre:"La transformation numérique de la santé : enjeux et pratiques pour l'opticien",sous:"Le numérique en santé",fmt:"Classe virtuelle",dur:"7h",prix:"490€ HT/part*",type:"Formation cognitive",action:"DPC N°99A82626006",
+   desc:"Maîtriser les enjeux réglementaires, technologiques et organisationnels du numérique en santé pour s'inscrire pleinement dans l'évolution de la filière visuelle.",
+   obj:["Expliquer les enjeux de la transformation numérique","Distinguer santé numérique, e-santé, télésanté et télémédecine","Reconnaître les acteurs de l'écosystème numérique en santé","Évaluer les opportunités et risques de l'IA médicale dans la filière visuelle"],
+   prog:["Cartographie de l'écosystème e-santé","Cadre juridique, éthique et réglementaire","La filière visuelle et la télé-ophtalmologie","Organiser la télémédecine en pratique","IA, innovations et perspectives"],
+   pub:"Opticien-lunetier. Prérequis : BTS Opticien-lunetier."},
+  {id:7,cat:"DPC",titre:"Compensation des myopes évolutifs par des verres de technologie avancée — Niveau 1",sous:"Perfectionnement de la réfraction",fmt:"Mixte",dur:"11h",prix:"700€ HT/part*",type:"Formation intégrée",action:"DPC N°99A82626007",enc:true,
+   desc:"Programme intégré (formation continue + EPP par TCS) pour perfectionner la pratique de réfraction des myopes évolutifs et maîtriser les dispositifs de compensation par verres de technologie avancée.",
+   obj:["Actualiser les connaissances sur la physiopathologie de la myopie évolutive","Maîtriser le protocole de réfraction adapté au myope évolutif","Connaître les verres de technologie avancée et leurs mécanismes d'action","Identifier les situations nécessitant une orientation vers l'ophtalmologiste"],
+   prog:["La myopie : une épidémie silencieuse","Physiopathologie et facteurs de risque","Protocole de réfraction du myope évolutif","Les systèmes de compensation de technologie avancée","Coordination interprofessionnelle et suivi","Évaluation des Pratiques Professionnelles par TCS"],
+   pub:"Opticien-lunetier. Prérequis : BTS Opticien-lunetier."},
+  {id:8,cat:"DPC",titre:"Nouveaux matériels de réfraction et pathologies oculaires : nouvelles pratiques pour l'opticien de santé",sous:"Perfectionnement de la réfraction",fmt:"Mixte",dur:"11h",prix:"700€ HT/part*",type:"Formation intégrée",action:"DPC N°99A82626008",enc:true,
+   desc:"Maîtriser les outils de réfraction de nouvelle génération, intégrer l'IA et la télé-expertise, et renforcer la détection des signaux d'alerte cliniques.",
+   obj:["Maîtriser les outils de réfraction de nouvelle génération","Renforcer les capacités à détecter les signaux d'alerte cliniques","Intégrer les nouvelles modalités de prise en charge (télé-expertise, IA)"],
+   prog:["Évolutions du rôle de l'opticien & cadre réglementaire","Nouveaux matériels de réfraction — Panorama technologique","Prise en main technique & cliniques","Cadre et pratique de la télémédecine","Intégration de l'IA","Cas cliniques par outil et pathologie","Évaluation des Pratiques Professionnelles par TCS"],
+   pub:"Opticien-lunetier. Prérequis : BTS Opticien-lunetier."},
+  {id:9,cat:"Essentielles",titre:"Boîte à outils pour bien débuter en optique",fmt:"Présentiel",dur:"14h",prix:"980€ HT/part*",
+   desc:"Acquérir les bases essentielles de la vision, de l'analyse d'ordonnance et du conseil en équipement.",
+   obj:["Définir les notions fondamentales d'optique physique","Identifier les structures anatomiques de l'œil","Expliquer les mécanismes d'accommodation et les principales amétropies","Recommander un verre adapté à un profil de correction","Structurer un entretien de vente et pratiquer l'écoute active"],
+   prog:["Notions fondamentales d'optique physique","Anatomie de l'œil","Mécanismes de la vision & Amétropies","Lecture & délivrance de l'ordonnance","Caractéristiques et choix des verres correcteurs","Montures & Visagisme","Lunettes solaires & Colorimétrie","Découverte des besoins & Entretien de vente","Prises de mesures & Livraison"],
+   pub:"Tout collaborateur débutant dans le secteur de l'optique lunetterie. Prérequis : aucun."},
+  {id:10,cat:"Essentielles",titre:"Conduire, maîtriser et finaliser un entretien commercial",fmt:"Présentiel",dur:"7h",prix:"490€ HT/part*",
+   desc:"Maîtriser les étapes clés de l'entretien commercial, de l'accueil à la fidélisation, grâce à une approche concrète et directement applicable en magasin.",
+   obj:["Repositionner le client et identifier ses besoins","Écoute active et questionnement","Argumenter et traiter les objections","Clôturer la vente et fidéliser le client"],
+   prog:["Les prérequis — L'environnement de vente","Repositionner le client","La recherche des besoins — Écoute active","Motivations d'achat","L'argumentation","Le devis et le traitement des objections","Clôturer la vente et fidéliser"],
+   pub:"Collaborateurs conseillers en magasin d'optique, tous niveaux d'expérience."},
+  {id:11,cat:"Essentielles",titre:"Intégrer l'IA pour optimiser votre communication sur les réseaux sociaux",fmt:"Classe virtuelle",dur:"4h",prix:"300€ HT/part*",
+   desc:"Développer une communication efficace sur les réseaux sociaux en maîtrisant les fondamentaux et les outils d'IA.",
+   obj:["Optimiser votre communication sur les réseaux sociaux","Intégrer l'Intelligence Artificielle pour optimiser sa communication","Comprendre le fonctionnement des réseaux sociaux"],
+   prog:["Comprendre les réseaux sociaux","Algorithme, statistiques & engagement","Stratégie & ligne éditoriale","Générer ses idées de contenu avec l'IA","Créer son calendrier éditorial avec l'IA","Optimiser ses comptes et ses publications"],
+   pub:"Opticiens collaborateurs et conseillers, niveau débutant sur les réseaux sociaux."},
+  {id:12,cat:"Essentielles",titre:"La réparation qui fidélise",fmt:"Présentiel",dur:"7h",prix:"490€ HT/part*",
+   desc:"Atelier pratique intensif permettant d'acquérir les gestes techniques essentiels pour adapter, réparer et prolonger la durée de vie des équipements optiques.",
+   obj:["Réaliser le shooting et déshootage d'une charnière","Réaliser le remplacement d'une charnière rivetée","Raccourcir une branche en métal, acétate ou titane","Réparer une face cassée","Réaliser une brasure métal propre et solide"],
+   prog:["Shooting & déshootage d'une charnière","Changement d'une charnière rivetée","Raccourcissement des branches","Réparation d'une face cassée","Brasure des montures métalliques"],
+   pub:"Opticiens, monteurs-vendeurs, collaborateurs. Prérequis : aucun."},
+  {id:13,cat:"Essentielles",titre:"Management d'équipe",fmt:"Présentiel",dur:"7h",prix:"490€ HT/part*",
+   desc:"Panorama complet des compétences managériales essentielles avec une pédagogie active ancrée dans les réalités du terrain.",
+   obj:["Mobiliser ses équipes par une communication claire et efficace","Optimiser son temps et entretenir la motivation","Piloter et développer l'entreprise"],
+   prog:["Communication efficace","Outil DISC : comprendre les profils comportementaux","Analyse Transactionnelle & Objectifs SMART","Délégation efficace & Gestion du temps","Feedback 360° & Gestion des conflits","Courage managérial, Motivation & Changement"],
+   pub:"Conseillers opticiens lunetiers en activité, futurs managers, opticiens en évolution de carrière. Prérequis : aucun."},
+  {id:14,cat:"Essentielles",titre:"Optimiser sa certification qualité — Mise à jour des engagements",fmt:"Distanciel",prix:"450€ HT/magasin*",
+   desc:"Mise à jour entièrement réalisée à distance : l'opticien adresse son classeur AFNOR à Next Step Academy, qui procède à la mise à jour et retourne les pièces nécessaires.",
+   obj:["Créer ou mettre à jour le classeur qualité (AFNOR ou Bureau Veritas)","Préparer l'ensemble des documents pour l'auditeur","Garantir la conformité documentaire avant l'audit qualité"],
+   prog:["Envoi du classeur AFNOR","Analyse et identification des documents à mettre à jour","Mise à jour complète du classeur qualité","Retour du classeur mis à jour"],
+   pub:"Gérants et responsables de magasins d'optique engagés dans une démarche de certification AFNOR ou Bureau Veritas."},
+  {id:15,cat:"Métier",titre:"Parcours Métier en Contactologie",sous:"Parcours total 7 jours",fmt:"Présentiel",dur:"7h/jour",prix:"490€ HT/jour/part*",
+   desc:"Maîtriser l'ensemble du parcours d'adaptation en lentilles de contact, des techniques d'adaptation au suivi des porteurs.",
+   obj:["Maîtriser les fondamentaux de la contactologie","Conduire un protocole d'adaptation complet","Adapter des lentilles souples sphériques, toriques et pour presbytes","Maîtriser les Lentilles Rigides Perméables aux Gaz (LRPG)"],
+   jours:["Jour 1 — Les fondamentaux de la contactologie","Jour 2 — Déroulement complet d'une adaptation (Partie 1/2)","Jour 3 — Déroulement complet d'une adaptation (Partie 2/2)","Jour 4 — Protocole d'adaptation et suivi des lentilles souples sphériques","Jour 5 — Protocole d'adaptation et suivi des lentilles souples toriques","Jour 6 — Protocole d'adaptation et suivi des lentilles souples pour la presbytie","Jour 7 — Protocole d'adaptation et suivi en Lentilles Rigides Perméables aux Gaz"],
+   pub:"Opticiens lunetiers diplômés, monteurs-vendeurs. Prérequis : progressifs selon les jours."},
+  {id:16,cat:"Métier",titre:"Parcours Métier en Réfraction",sous:"Parcours total 6 jours",fmt:"Présentiel",dur:"7h/jour",prix:"490€ HT/jour/part*",
+   desc:"À l'issue de ce parcours, le participant sera capable de réaliser un contrôle de vision complet et autonome.",
+   obj:["Réaliser un contrôle de vision complet et autonome","Maîtriser les techniques de réfraction (méthode SACS)","Évaluer la vision binoculaire et de près","Appliquer les bonnes pratiques réglementaires et recommandations HAS"],
+   jours:["Jour 1 — Réglementation, Histoire de Cas & Examens Préliminaires","Jour 2 — Réfraction Monoculaire — Méthode SACS","Jour 3 — Réfraction Bioculaire & Binoculaire — Appréciation Perceptuelle","Jour 4 — Étude de la Vision de Près — Presbytie & Détermination de l'Addition","Jour 5 — Vision Binoculaire — Phories, Stéréopsie & Aniséiconie","Jour 6 — La liaison accommodation-convergence"],
+   pub:"Opticiens lunetiers, candidats VAE, collaborateurs en optique. Prérequis : expérience professionnelle en optique."},
+  {id:17,cat:"Métier",titre:"Parcours Métier en Basse Vision",sous:"Parcours total 5 jours",fmt:"Mixte",dur:"7h/jour",prix:"490€ HT/jour/part*",
+   desc:"Acquérir les compétences cliniques, techniques et relationnelles nécessaires pour assurer une prise en charge globale en basse vision.",
+   obj:["Connaître les principales pathologies de basse vision","Classifier et choisir les aides visuelles adaptées","Conduire une anamnèse et un bilan visuel complet en 11 étapes","Gérer des cas cliniques complexes en réseau pluridisciplinaire"],
+   jours:["Jour 1 — Pathologies et qualité de vie (classe virtuelle)","Jour 2 — Les aides visuelles — Théorie, calculs et choix clinique","Jour 3 — Anamnèse approfondie et bilan visuel complet","Jour 4 — Pratique des aides visuelles — 6 ateliers","Jour 5 — Cas cliniques intégrés, réseau, document patient"],
+   pub:"Opticiens lunetiers. Prérequis : BTS Opticien-Lunetier."},
+  {id:18,cat:"Métier",titre:"Accompagnement à la Certification et à la Réglementation en Optique",sous:"Parcours 3 jours sur 3 ans",fmt:"Mixte",dur:"12h sur 3 ans",prix:"660€ HT/an (engagement 3 ans)*",
+   desc:"Accompagnement structuré sur trois ans pour préparer, obtenir et maintenir la certification AFNOR ou Bureau Veritas.",
+   obj:["Réaliser un état des lieux du magasin et identifier les écarts","Appliquer le modèle de vente idéale","Préparer le renouvellement de la certification AFNOR ou Bureau Veritas","Construire et engager le plan d'action"],
+   jours:["Année 1 — Journée de formation technique et commerciale (présentiel)","Année 2 — Accompagnement mises à jour (classe virtuelle)","Année 3 — Accompagnement et mises à jour (classe virtuelle)"],
+   pub:"Gérants ou responsables de magasins engagés dans une démarche de certification."},
+  {id:19,cat:"Signature",titre:"Formes et couleurs",formateur:"Par Annie-Pierre Mansuy — En partenariat avec Vistea",fmt:"Mixte",dur:"11h",prix:"750€ HT/part*",
+   desc:"Formation en blended learning associant e-learning et ateliers pratiques pour maîtriser les fondamentaux des formes, de la colorimétrie et du conseil personnalisé.",
+   obj:["Optimiser les propositions de choix des montures en fonction de la forme du visage","Maîtriser la technique et la communication du choix monture","Donner des conseils personnalisés en fonction de la morphologie et la colorimétrie","Optimiser le temps de choix des montures"],
+   prog:["Module 1 : Les étapes de la vente-conseil (e-learning)","Module 2 : Morphologie — formes de visage et montures harmonieuses (e-learning)","Module 3 : Colorimétrie — tonalités, théorie des 4 saisons (e-learning)","Module 4 : Conclusion e-learning et préparation à la séance","Module 5 : Mises en pratique (présentiel)"],
+   pub:"Opticiens lunetiers, conseillers de vente. Prérequis : 2 ans d'expérience de vente."},
+  {id:20,cat:"Signature",titre:"Les bonnes pratiques de la réfraction",formateur:"Par Vincent Poulet",fmt:"Présentiel",dur:"7h",prix:"650€ HT/part*",
+   desc:"Perfectionner sa pratique de la réfraction en intégrant la posture et la proprioception, pour éviter les problèmes d'adaptation.",
+   obj:["Retrouver la bonne maîtrise de la pratique de l'optométrie","Élargir les champs de l'analyse — intégrer posture et proprioception","Éviter les problèmes d'adaptation par une meilleure compréhension du système visio-postural"],
+   prog:["Étude de la méthode utilisée en magasin","Prise de conscience de la nécessité d'élargir l'analyse","Détermination du motif de prise en charge","Tests préliminaires indispensables","Analyse des éléments caractéristiques de la posture","Méthodologie pratique de la réfraction","Méthode et intérêts du test de variation dioptriques"],
+   pub:"Opticiens pratiquant régulièrement la réfraction désirant se perfectionner. Prérequis : BTS Opticien-Lunetier."},
+  {id:21,cat:"Signature",titre:"Sensibilisation : Vision et Posturologie",formateur:"Par Alain Abecassis",fmt:"Présentiel",dur:"14h",prix:"1 350€ HT/part*",
+   desc:"Intégrer les liens entre vision et posture dans sa pratique avec des outils concrets pour améliorer l'anamnèse et réaliser des dépistages posturaux.",
+   obj:["Expliquer les interactions entre système visuel et équilibre postural","Analyser l'impact des équipements optiques sur la posture du patient","Réaliser les tests cliniques de dépistage postural de base","Distinguer les indications des prismes posturaux et jumelés verticaux"],
+   prog:["Fondements et interactions","Phories, ergonomie et prismes","Anamnèse, pathologies et tests pratiques","Solutions, réseau et évaluation"],
+   pub:"Opticiens lunetiers diplômés, opticiens optométristes. Prérequis : BTS Opticien-Lunetier."},
+  {id:22,cat:"Signature",titre:"Structurer et développer une activité de contactologie en magasin d'optique",formateur:"Par Marina Barthe",fmt:"Présentiel",dur:"7h",prix:"650€ HT/part*",
+   desc:"Développer et piloter une activité de contactologie performante avec des outils concrets pour structurer le parcours patient et fidéliser les porteurs.",
+   obj:["Comprendre et repositionner la contactologie comme levier stratégique","Développer et piloter son activité pour attirer et fidéliser les porteurs","Structurer et organiser une activité de contactologie en magasin"],
+   prog:["La contactologie : une opportunité stratégique","Comprendre le parcours d'un porteur de lentilles","Structurer un pôle contactologie dans son magasin","Déterminer la rentabilité et fixer les honoraires","Attirer de nouveaux porteurs","Construire un réseau avec les ophtalmologistes","Piloter et suivre l'activité"],
+   pub:"Opticiens expérimentés et managers. Prérequis : licence et/ou savoir adapter et utiliser la lampe à fente."}
+];
+
+// TEAM
+document.getElementById("team-grid").innerHTML=TEAM.map(t=>`
+  <div class="t-card">
+    ${t.photo
+      ? `<img src="${t.photo}" alt="${t.nom}" style="width:64px;height:64px;border-radius:50%;object-fit:cover;margin:0 auto 10px;display:block;border:3px solid #dde3ee">`
+      : `<div class="t-av" style="background:${t.bg}">${t.init}</div>`
+    }
+    <div class="t-name">${t.nom}</div>
+    <div class="t-qual">${t.qual}</div>
+    <div class="t-spec">${t.spec}</div>
+  </div>`).join("");
+
+// FILTERS
+const CATS=["tous","DPC","Essentielles","Métier","Signature"];
+const FMTS=["Tous formats","Présentiel","Classe virtuelle","Distanciel","Mixte"];
+const cr=document.getElementById("cat-row");
+CATS.forEach(c=>{
+  const b=document.createElement("button");
+  b.className="cat-btn"+(c==="tous"?" ac":"");
+  b.dataset.c=c;
+  b.textContent=({tous:"Toutes les formations",DPC:"Formations DPC",Essentielles:"Essentielles",Métier:"Parcours Métier",Signature:"Signature"})[c]||c;
+  b.onclick=function(){aCat=c;document.querySelectorAll(".cat-btn").forEach(x=>x.classList.remove("ac"));this.classList.add("ac");closeDetail();render()};
+  cr.appendChild(b);
+});
+const fr=document.getElementById("fmt-row");
+FMTS.forEach(f=>{
+  const b=document.createElement("button");
+  b.className="fmt-btn"+(f==="Tous formats"?" af":"");
+  b.textContent=f;
+  b.onclick=function(){aFmt=f;document.querySelectorAll(".fmt-btn").forEach(x=>x.classList.remove("af"));this.classList.add("af");closeDetail();render()};
+  fr.appendChild(b);
+});
+
+// RENDER
+function render(){
+  const q=document.getElementById("search").value.toLowerCase();
+  const fg=document.getElementById("f-grid");fg.innerHTML="";
+  const items=DATA.filter(f=>{
+    if(aCat!=="tous"&&f.cat!==aCat)return false;
+    if(aFmt!=="Tous formats"&&!f.fmt.includes(aFmt))return false;
+    if(q&&!(f.titre.toLowerCase().includes(q)||(f.sous||"").toLowerCase().includes(q)||(f.desc||"").toLowerCase().includes(q)))return false;
+    return true;
+  });
+  if(!items.length){fg.innerHTML=`<div class="empty-state"><i class="fa fa-search" style="font-size:34px;display:block;margin-bottom:10px;opacity:.3"></i>Aucune formation ne correspond.</div>`;return}
+  items.forEach(f=>{
+    const cc=catCls[f.cat]||"dpc";
+    const d=document.createElement("div");
+    d.className="f-card";d.dataset.id=f.id;
+    d.innerHTML=`
+      <div class="f-bar ${cc}"></div>
+      <div class="f-top">
+        <div class="f-ic ${cc}"><i class="${catIc[f.cat]||'fa fa-book'}"></i></div>
+        <div><div class="f-cl ${cc}">${catLb[f.cat]||f.cat}</div>${f.sous?`<div style="font-size:9px;color:#5a6a8a;margin-top:1px">${f.sous}</div>`:""}</div>
+      </div>
+      <div class="f-body">
+        <div class="f-title">${f.titre}</div>
+        ${f.formateur?`<div class="f-by">${f.formateur}</div>`:""}
+        ${f.enc?`<div class="enc-badge">⏳ En cours de validation ANDPC *</div>`:""}
+        <div class="f-tags" style="margin-top:6px">
+          ${f.dur?`<span class="f-tag">⏱ ${f.dur}</span>`:""}
+          <span class="f-tag">📍 ${f.fmt}</span>
+          ${f.type?`<span class="f-tag">${f.type}</span>`:""}
+        </div>
+      </div>
+      <div class="f-foot">
+        <div>
+          <div class="f-price">${f.prix}</div>
+          ${f.fmt.includes('résentiel')?`<div class="f-org">+ frais d'organisation à prévoir</div>`:""}
+        </div>
+        <span class="f-more">Voir le détail</span>
+      </div>`;
+    d.onclick=()=>openDetail(f,d);
+    fg.appendChild(d);
+  });
+}
+
+// DETAIL
+let currentId=null;
+function closeDetail(){
+  const ex=document.getElementById("f-detail");
+  if(ex)ex.remove();
+  document.querySelectorAll(".f-card.sel").forEach(c=>c.classList.remove("sel"));
+  currentId=null;
+}
+function openDetail(f,cardEl){
+  if(currentId===f.id){closeDetail();return}
+  closeDetail();currentId=f.id;cardEl.classList.add("sel");
+  const cc=catCls[f.cat]||"dpc";
+  const kpis=[];
+  if(f.dur)kpis.push({l:"Durée",v:f.dur});
+  kpis.push({l:"Format",v:f.fmt});
+  if(f.type)kpis.push({l:"Type",v:f.type});
+  if(f.action)kpis.push({l:"Réf. DPC",v:f.action});
+  let progHtml="";
+  if(f.jours&&f.jours.length){
+    progHtml=`<div class="fds"><h4>Contenu du parcours</h4><div class="d-grid">${f.jours.map(j=>{const p=j.split("—");return`<div class="d-item"><div class="d-n">${p[0]||""}</div>${p[1]||""}</div>`}).join("")}</div></div>`;
+  } else if(f.prog&&f.prog.length){
+    progHtml=`<div class="fds"><h4>Programme</h4><ul>${f.prog.map(p=>`<li>${p}</li>`).join("")}</ul></div>`;
+  }
+  const prixNote=`*hors frais de dossier (50€ HT/participant)${f.fmt.includes('résentiel')?" · + frais d'organisation à prévoir":""}`;
+  const panel=document.createElement("div");
+  panel.id="f-detail";panel.className="f-detail";
+  panel.innerHTML=`
+    <div class="fd-head ${cc}">
+      <div>
+        <div class="fd-cat">${catLb[f.cat]||f.cat}</div>
+        <div class="fd-title">${f.titre}</div>
+        ${f.formateur?`<div class="fd-by">${f.formateur}</div>`:""}
+      </div>
+      <button class="fd-close" onclick="closeDetail()">✕</button>
+    </div>
+    <div class="fd-body">
+      <div>
+        <div class="fd-kpis">${kpis.map(k=>`<div class="fd-kpi"><div class="fd-kl">${k.l}</div><div class="fd-kv">${k.v}</div></div>`).join("")}</div>
+        ${f.enc?`<div class="enc-notice">⏳ Cette formation est en cours de validation par l'ANDPC.</div>`:""}
+        <div class="fds"><h4>À propos</h4><p>${f.desc||""}</p></div>
+        <div class="fds"><h4>Objectifs pédagogiques</h4><ul>${(f.obj||[]).map(o=>`<li>${o}</li>`).join("")}</ul></div>
+        <div class="fds"><h4>Public &amp; prérequis</h4><p>${f.pub||""}</p></div>
+      </div>
+      <div>${progHtml}</div>
+    </div>
+    <div class="fd-foot">
+      <div class="fd-pr">${f.prix} <small>${prixNote}</small></div>
+      <a href="https://nextstep-academy.fr/contact/" target="_blank" class="btn-devis">Demander un devis →</a>
+    </div>`;
+  cardEl.after(panel);
+  setTimeout(()=>panel.scrollIntoView({behavior:"smooth",block:"nearest"}),80);
+}
+
+// NAV
+function navClick(el){
+  el.preventDefault();
+  const t=document.querySelector(el.getAttribute("href"));
+  if(t)t.scrollIntoView({behavior:"smooth"});
+  document.querySelectorAll(".nav-links a").forEach(x=>x.classList.remove("active"));
+  el.classList.add("active");
+}
+function goToCat(cat){
+  aCat=cat;
+  document.querySelectorAll(".cat-btn").forEach(x=>x.classList.remove("ac"));
+  const b=document.querySelector(`.cat-btn[data-c="${cat}"]`);
+  if(b)b.classList.add("ac");
+  closeDetail();render();
+  document.getElementById("catalogue").scrollIntoView({behavior:"smooth"});
+}
+
+render();
+</script>
